@@ -1,0 +1,56 @@
+#Task 4
+
+#here the user will enter their choice of x
+x = float(input("x="))
+
+n=10
+print('n= ' + str(n))
+
+''' #A redditor made me realize my matrix is empty. I think this could be of use
+#create lists to store ai values.
+avalues = []
+
+#filling in row one
+for row in range(0,1):
+    for i in range(0,n+1):
+        dss[row].append(avalues[i])
+
+#filling in the rest of the matrix
+for row in range(1,n+1):
+    for col in range(0,row):
+        dss[row].append(None) #to get triangle matrix
+    for col in range(row,n+1):
+        d = (dss[row-1][col]-(4**-row)*dss[row-1][col-1])/(1-(4**-row)) #recursion formula
+'''        
+
+#create an empty matrix using the type constructor
+dss = [[] for row in range(0,n+1)] #to store d00,d01,d02,...,dnn
+
+def fast_approx_ln(x,n):
+    #here we iterate
+    if x>0:
+        ai = (1+x)/2
+        gi = sqrt(x)
+        for i in range(n):
+            ai_next = (ai+gi)/2
+            gi_next = sqrt(ai_next*gi)
+            ai=ai_next
+            gi=gi_next
+        for i in range(n):
+            ai_next = (ai_next+gi_next)/2
+            gi_next = sqrt(ai_next*gi)
+            d = ai_next
+            for row in range(0,n+1):
+                for col in range(0,n+1):
+                        d = (dss[row-1][col]-(4**-row)*dss[roq-1][col-1])/(1-(4**-row))
+                        dss[row].append(d)
+                        return (x-1)/d[n][n]
+    #gotta make sure no negative numbers are allowed
+    else:
+        print('No negative numbers please!')
+    
+
+epsilon_n = (2**(-n**3-3*n-1))*(log(x)/pi)**(2*n+2)
+
+
+print(fast_approx_ln(x,n))
